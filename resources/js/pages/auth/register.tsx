@@ -1,4 +1,3 @@
-import { Form, Head } from '@inertiajs/react';
 import InputError from '@/components/input-error';
 import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
@@ -8,12 +7,13 @@ import { Spinner } from '@/components/ui/spinner';
 import AuthLayout from '@/layouts/auth-layout';
 import { login } from '@/routes';
 import { store } from '@/routes/register';
+import { Form, Head } from '@inertiajs/react';
 
 export default function Register() {
     return (
         <AuthLayout
             title="Create an account"
-            description="Enter your details below to create your account"
+            description="Start tracking your expenses today"
         >
             <Head title="Register" />
             <Form
@@ -31,6 +31,7 @@ export default function Register() {
                                     id="name"
                                     type="text"
                                     required
+                                    className="rounded-xl"
                                     autoFocus
                                     tabIndex={1}
                                     autoComplete="name"
@@ -49,6 +50,7 @@ export default function Register() {
                                     id="email"
                                     type="email"
                                     required
+                                    className="rounded-xl"
                                     tabIndex={2}
                                     autoComplete="email"
                                     name="email"
@@ -63,6 +65,7 @@ export default function Register() {
                                     id="password"
                                     type="password"
                                     required
+                                    className="rounded-xl"
                                     tabIndex={3}
                                     autoComplete="new-password"
                                     name="password"
@@ -79,6 +82,7 @@ export default function Register() {
                                     id="password_confirmation"
                                     type="password"
                                     required
+                                    className="rounded-xl"
                                     tabIndex={4}
                                     autoComplete="new-password"
                                     name="password_confirmation"
@@ -91,7 +95,7 @@ export default function Register() {
 
                             <Button
                                 type="submit"
-                                className="mt-2 w-full"
+                                className="mt-0 w-full rounded-xl py-6"
                                 tabIndex={5}
                                 data-test="register-user-button"
                             >

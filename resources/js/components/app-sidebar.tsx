@@ -1,5 +1,3 @@
-import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
@@ -13,14 +11,41 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
+import categories from '@/routes/categories';
+import profile from '@/routes/profile';
+import transactions from '@/routes/transactions';
 import type { NavItem } from '@/types';
+import { Link } from '@inertiajs/react';
+import {
+    BookOpen,
+    CircleDollarSign,
+    Folder,
+    FolderOpen,
+    LayoutDashboard,
+    Settings,
+} from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
     {
         title: 'Dashboard',
         href: dashboard(),
-        icon: LayoutGrid,
+        icon: LayoutDashboard,
+    },
+    {
+        title: 'Transactions',
+        href: transactions.index(),
+        icon: CircleDollarSign,
+    },
+    {
+        title: 'Categories',
+        href: categories.index(),
+        icon: FolderOpen,
+    },
+    {
+        title: 'Settings',
+        href: profile.edit(),
+        icon: Settings,
     },
 ];
 
@@ -39,7 +64,7 @@ const footerNavItems: NavItem[] = [
 
 export function AppSidebar() {
     return (
-        <Sidebar collapsible="icon" variant="inset">
+        <Sidebar collapsible="icon" variant="floating">
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>

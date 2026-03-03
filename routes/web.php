@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Expense\CategoryController;
+use App\Http\Controllers\Expense\TransactionController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
@@ -11,7 +14,13 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('dashboard', function () {
-    return Inertia::render('dashboard');
+    $categories = Category::all()->groupBy('type');
+    return Inertia::render('dashboard', compact('categories'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__.'/settings.php';
+Route::resources([
+    'categories'   => CategoryController::class,
+    'transactions' => TransactionController::class,
+]);
+
+require __DIR__ . '/settings.php';

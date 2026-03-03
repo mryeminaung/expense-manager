@@ -1,5 +1,3 @@
-import { Link } from '@inertiajs/react';
-import type { PropsWithChildren } from 'react';
 import Heading from '@/components/heading';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -10,27 +8,41 @@ import { edit } from '@/routes/profile';
 import { show } from '@/routes/two-factor';
 import { edit as editPassword } from '@/routes/user-password';
 import type { NavItem } from '@/types';
+import { Link } from '@inertiajs/react';
+import {
+    Lock,
+    SlidersVertical,
+    TriangleAlert,
+    UserCog,
+    UserRound,
+} from 'lucide-react';
+import type { PropsWithChildren } from 'react';
 
 const sidebarNavItems: NavItem[] = [
     {
         title: 'Profile',
         href: edit(),
-        icon: null,
+        icon: UserRound,
     },
     {
-        title: 'Password',
+        title: 'Security',
         href: editPassword(),
-        icon: null,
+        icon: Lock,
     },
     {
         title: 'Two-Factor Auth',
         href: show(),
-        icon: null,
+        icon: UserCog,
     },
     {
         title: 'Appearance',
         href: editAppearance(),
-        icon: null,
+        icon: SlidersVertical,
+    },
+    {
+        title: 'Account',
+        href: editAppearance(),
+        icon: TriangleAlert,
     },
 ];
 
