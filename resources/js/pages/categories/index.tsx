@@ -1,10 +1,10 @@
 import Heading from '@/components/heading';
-import { Button } from '@/components/ui/button';
 import AppLayout from '@/layouts/app-layout';
 import categories from '@/routes/categories';
 import { BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
-import { CirclePlus } from 'lucide-react';
+import CategoriesTable from './components/categories-table';
+import NewCategory from './components/new-category';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -24,11 +24,9 @@ export default function CategoryPage() {
                         title="Categories"
                         description="Manage your income and expense categories"
                     />
-                    <Button className="rounded-xl">
-                        <CirclePlus className="h-4 w-4" />
-                        Add Category
-                    </Button>
+                    <NewCategory />
                 </div>
+                <CategoriesTable />
             </div>
         </AppLayout>
     );

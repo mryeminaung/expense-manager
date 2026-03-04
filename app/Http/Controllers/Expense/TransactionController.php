@@ -26,14 +26,6 @@ class TransactionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(TransactionRequest $request)
@@ -42,22 +34,6 @@ class TransactionController extends Controller
 
         return to_route('transactions.index')
             ->with('success', 'Transaction created successfully.');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Transaction $transaction)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Transaction $transaction)
-    {
-        //
     }
 
     /**
