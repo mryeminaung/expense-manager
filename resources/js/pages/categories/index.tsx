@@ -1,7 +1,10 @@
+import Heading from '@/components/heading';
+import { Button } from '@/components/ui/button';
 import AppLayout from '@/layouts/app-layout';
 import categories from '@/routes/categories';
 import { BreadcrumbItem } from '@/types';
-import { Head, usePage } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
+import { CirclePlus } from 'lucide-react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -11,11 +14,22 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 export default function CategoryPage() {
-    console.log(usePage().props);
-
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Categories" />
+
+            <div className="px-4 py-6">
+                <div className="flex items-center justify-between">
+                    <Heading
+                        title="Categories"
+                        description="Manage your income and expense categories"
+                    />
+                    <Button className="rounded-xl">
+                        <CirclePlus className="h-4 w-4" />
+                        Add Category
+                    </Button>
+                </div>
+            </div>
         </AppLayout>
     );
 }

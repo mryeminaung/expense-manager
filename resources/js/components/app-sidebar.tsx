@@ -1,6 +1,5 @@
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
-import { NavUser } from '@/components/nav-user';
 import {
     Sidebar,
     SidebarContent,
@@ -9,6 +8,7 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
+    useSidebar,
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
 import categories from '@/routes/categories';
@@ -17,14 +17,14 @@ import transactions from '@/routes/transactions';
 import type { NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import {
-    BookOpen,
     CircleDollarSign,
-    Folder,
     FolderOpen,
     LayoutDashboard,
     Settings,
+    ShieldQuestion,
 } from 'lucide-react';
 import AppLogo from './app-logo';
+import { NavUser } from './nav-user';
 
 const mainNavItems: NavItem[] = [
     {
@@ -51,18 +51,15 @@ const mainNavItems: NavItem[] = [
 
 const footerNavItems: NavItem[] = [
     {
-        title: 'Repository',
+        title: 'Help',
         href: 'https://github.com/laravel/react-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#react',
-        icon: BookOpen,
+        icon: ShieldQuestion,
     },
 ];
 
 export function AppSidebar() {
+    const { isMobile } = useSidebar();
+
     return (
         <Sidebar collapsible="icon" variant="floating">
             <SidebarHeader>
@@ -83,7 +80,7 @@ export function AppSidebar() {
 
             <SidebarFooter>
                 <NavFooter items={footerNavItems} className="mt-auto" />
-                <NavUser />
+                {isMobile && <NavUser />}
             </SidebarFooter>
         </Sidebar>
     );

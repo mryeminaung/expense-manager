@@ -17,9 +17,6 @@ class CategorySeeder extends Seeder
         ], [
             'name' => 'Freelance',
             'type' => 'income',
-        ], [
-            'name' => 'Freelance',
-            'type' => 'income',
         ]];
 
         $expenseCategories = [[

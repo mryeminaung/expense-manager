@@ -4,7 +4,7 @@ import { Separator } from '@/components/ui/separator';
 import { useCurrentUrl } from '@/hooks/use-current-url';
 import { cn, toUrl } from '@/lib/utils';
 import { edit as editAppearance } from '@/routes/appearance';
-import { edit } from '@/routes/profile';
+import profile, { edit } from '@/routes/profile';
 import { show } from '@/routes/two-factor';
 import { edit as editPassword } from '@/routes/user-password';
 import type { NavItem } from '@/types';
@@ -35,13 +35,13 @@ const sidebarNavItems: NavItem[] = [
         icon: UserCog,
     },
     {
-        title: 'Appearance',
+        title: 'Preferences',
         href: editAppearance(),
         icon: SlidersVertical,
     },
     {
         title: 'Account',
-        href: editAppearance(),
+        href: profile.accountDeletion(),
         icon: TriangleAlert,
     },
 ];
@@ -58,7 +58,7 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
         <div className="px-4 py-6">
             <Heading
                 title="Settings"
-                description="Manage your profile and account settings"
+                description="Manage your account, security, and preferences"
             />
 
             <div className="flex flex-col lg:flex-row lg:space-x-12">
@@ -70,7 +70,7 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
                         {sidebarNavItems.map((item, index) => (
                             <Button
                                 key={`${toUrl(item.href)}-${index}`}
-                                size="sm"
+                                size="lg"
                                 variant="ghost"
                                 asChild
                                 className={cn('w-full justify-start', {

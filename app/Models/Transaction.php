@@ -7,6 +7,13 @@ class Transaction extends Model
 {
     protected $fillable = ['amount', 'category_id', 'date', 'remark'];
 
+    protected function casts(): array
+    {
+        return [
+            'date' => 'date',
+        ];
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

@@ -2,6 +2,9 @@
 namespace App\Http\Controllers\Expense;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Expense\TransactionRequest;
+use App\Http\Resources\Expense\TransactionResource;
+use App\Models\Category;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -13,8 +16,13 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::all();
-        return Inertia::render('transactions/index', compact('transactions'));
+        $transactions = Transaction::with('category')->get();
+        $categories   = Category::all()->groupBy('type');
+
+        return Inertia::render('transactions/index', [
+            'transactions' => TransactionResource::collection($transactions),
+            'categories'   => $categories,
+        ]);
     }
 
     /**
@@ -28,9 +36,12 @@ class TransactionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TransactionRequest $request)
     {
-        //
+        Transaction::create($request->validated());
+
+        return to_route('transactions.index')
+            ->with('success', 'Transaction created successfully.');
     }
 
     /**
@@ -62,6 +73,9 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
-        //
+        $transaction->delete();
+
+        return to_route('transactions.index')
+            ->with('success', 'Transaction deleted successfully.');
     }
 }

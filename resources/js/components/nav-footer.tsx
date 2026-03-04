@@ -1,4 +1,3 @@
-import type { ComponentPropsWithoutRef } from 'react';
 import {
     SidebarGroup,
     SidebarGroupContent,
@@ -8,6 +7,12 @@ import {
 } from '@/components/ui/sidebar';
 import { toUrl } from '@/lib/utils';
 import type { NavItem } from '@/types';
+import { Link, router } from '@inertiajs/react';
+
+import { useMobileNavigation } from '@/hooks/use-mobile-navigation';
+import { logout } from '@/routes';
+import { LogOut } from 'lucide-react';
+import type { ComponentPropsWithoutRef } from 'react';
 
 export function NavFooter({
     items,
@@ -16,6 +21,13 @@ export function NavFooter({
 }: ComponentPropsWithoutRef<typeof SidebarGroup> & {
     items: NavItem[];
 }) {
+    const cleanup = useMobileNavigation();
+
+    const handleLogout = () => {
+        cleanup();
+        router.flushAll();
+    };
+
     return (
         <SidebarGroup
             {...props}
@@ -42,8 +54,35 @@ export function NavFooter({
                             </SidebarMenuButton>
                         </SidebarMenuItem>
                     ))}
+                    <SidebarMenuItem>
+                        <SidebarMenuButton
+                            asChild
+                            className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-300 dark:hover:text-neutral-100"
+                        >
+                            <Link
+                                className="block w-full cursor-pointer"
+                                href={logout()}
+                                as="button"
+                                onClick={handleLogout}
+                                data-test="logout-button"
+                            >
+                                <LogOut />
+                                Sign out
+                            </Link>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarGroupContent>
         </SidebarGroup>
     );
+
+    /*
+
+    {
+        title: 'Sign Out',
+        href: 'https://laravel.com/docs/starter-kits#react',
+        icon: LogOut,
+    },
+
+    */
 }
