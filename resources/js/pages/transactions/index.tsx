@@ -4,6 +4,7 @@ import transactions from '@/routes/transactions';
 import { BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 import NewTransaction from './components/new-transaction';
+import TransactionsTable from './components/transactions-table';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -25,6 +26,8 @@ export default function TransactionPage() {
                     />
                     <NewTransaction />
                 </div>
+
+                <TransactionsTable />
             </div>
         </AppLayout>
     );

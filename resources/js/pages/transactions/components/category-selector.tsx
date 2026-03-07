@@ -8,7 +8,7 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { usePage } from '@inertiajs/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 type Category = {
     id: number;
@@ -34,15 +34,15 @@ export function CategorySelector({
     const { categories } = usePage<{ categories: Categories }>().props;
     const [currentCategories, setCurrentCategories] = useState<Category[]>([]);
 
-    useEffect(() => {
-        if (!currentType) {
-            setCurrentCategories([]);
-            return;
-        }
-        setCurrentCategories(
-            currentType === 'expense' ? categories.expense : categories.income,
-        );
-    }, [categories, currentType]);
+    // useEffect(() => {
+    //     if (!currentType) {
+    //         setCurrentCategories([]);
+    //         return;
+    //     }
+    //     setCurrentCategories(
+    //         currentType === 'expense' ? categories.expense : categories.income,
+    //     );
+    // }, [categories, currentType]);
 
     return (
         <Select
